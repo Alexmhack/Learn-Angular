@@ -2,6 +2,7 @@ export class ICustomer {
 	id: number;
 	name: string;
 	city: string;
+	orderTotal: number;
 	customerSince: any;
 }
 
