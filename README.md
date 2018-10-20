@@ -266,3 +266,60 @@ export class CustomersModule { }
 This means whenever we import ```CustomersModule``` we automatically get ```CustomersComponent```
 **NOTE:** check the ```src/app/customers/customers.component.html``` file for more info.
 Now the error is fixed and we get the title from customers being displayed.
+
+## Data Binding
+We have already used the data binding feature provided by Angular in templates when we 
+did ```<h1>{{ title }}</h1>``` that displayed the ```title``` variable value from the 
+component file.
+
+Another alternative to achieve the same results is using
+
+```
+<h2 [innerHTML]="title"></h2>
+```
+
+But this is not preferred as this is long piece of code as compared to using 
+interpolation using curly braces => ```{{ title }}```
+
+We can also use event binding which can be done by
+
+**customers.component.ts**
+```
+...
+export class CustomersComponent implements OnInit {
+
+  isVisisble: true;
+  ...
+```
+
+We define a boolean value of ```true``` and can use it in template
+
+**customers.component.html**
+```
+<h2 [hidden]="!isVisible">{{ title }}</h2>
+```
+
+We bind the ```hidden``` CSS property with a condition that is opposite value of ```isVisible``` which means opposite of **true** i.e. **false**, we can use this with a 
+button which on pressing will hide show the ```title```
+
+**customers.component.html**
+```
+<button (click)="changeVisibility()">Show / Hide</button>
+```
+
+```(event)="callFunction()"``` is the syntax for event binding. Since we used a 
+function here we need it define it in components
+
+```
+  ...
+  isVisible: true;
+
+  changeVisibility() {
+    this.isVisible = !this.isVisible;
+  }
+  ...
+```
+
+```changeVisibility``` function simply changes the value of ```isVisible``` to the 
+opposite of its current value. So if it is **true** the button click event makes its 
+value **false**
