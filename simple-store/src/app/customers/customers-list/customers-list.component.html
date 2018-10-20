@@ -2,7 +2,36 @@
 
 <br />
 <br />
-<table class="table table-hover">
+
+<table mdbTable>
+  <thead class="blue white-text">
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">City</th>
+        <th scope="col">Order Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr mdbTableCol *ngFor="let cust of filteredCustomers">
+      <th scope="row">{{ cust.id }}</th>
+      <td>{{ cust.name }}</td>
+      <td>{{ cust.city }}</td>
+      <td>{{ cust.orderTotal }}</td>
+    </tr>
+    <tr *ngIf="filteredCustomers && filteredCustomers.length">
+        <td colspan="2">&nbsp;</td>
+        <td>
+            {{ customerOrderTotal }}
+        </td>
+    </tr>
+    <tr *ngIf="!filteredCustomers && !filteredCustomers.length">
+        <td colspan="4">No customers found</td>
+    </tr>
+  </tbody>
+</table>
+Number of Customers: {{ filteredCustomers.length }}
+
+<!-- <table class="table table-hover">
     <thead>
         <tr>
             <th>Name</th>
@@ -10,24 +39,25 @@
             <th>Order Total</th>
         </tr>
     </thead>
-    <tr>
+    <tr *ngFor="let cust of filteredCustomers">
         <td>
             <a>
-                
+                {{ cust.name }}
             </a>
         </td>
-        <td></td>
-        <td></td>
+        <td>{{ cust.city }}</td>
+        <td>{{ cust.orderTotal }}</td>
     </tr>
-    <tr>
+    <tr *ngIf="filteredCustomers && filteredCustomers.length">
         <td colspan="2">&nbsp;</td>
         <td>
-            
+            {{ customerOrderTotal }}
         </td>
     </tr>
-    <tr>
+    <tr *ngIf="!filteredCustomers && !filteredCustomers.length">
         <td colspan="4">No customers found</td>
     </tr>
 </table>
-Number of Customers:
+Number of Customers: {{ filteredCustomers.length }}
 <br />
+ -->

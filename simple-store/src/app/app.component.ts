@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   // 	<h1>{{ title }}</h1>
   // 	<app-customers></app-customers>
   // `,
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   // title = 'simple-store angular app';
