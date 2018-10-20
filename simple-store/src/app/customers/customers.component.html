@@ -1,2 +1,5 @@
-<h2 [innerHTML]="title"></h2>
+<h2 [hidden]="isVisible">{{ title }}</h2>
+<button (click)="changeVisibility()">Show / Hide</button>
+<br>
+<br>
 <app-customers-list></app-customers-list>
