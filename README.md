@@ -453,3 +453,7 @@ customers folder and also registers the module in the ```customers.module.ts```
 in the ```app.module.ts``` file so what about our new routing module for customers.
 
 We have to use ```forChild``` with the new routes in the child modules.
+
+When using ```redirectTo``` in routes we use the ```'/customers'``` by putting a slash
+at the front of the path and when creating a path for the component we specify the
+path without any slashes ```{ path: 'customers', component: CustomersComponent }```
