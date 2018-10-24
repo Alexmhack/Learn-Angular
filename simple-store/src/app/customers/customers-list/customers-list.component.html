@@ -6,9 +6,9 @@
 <table mdbTable>
   <thead class="blue white-text">
     <tr>
-        <th scope="col">Name</th>
-        <th scope="col">City</th>
-        <th scope="col">Order Total</th>
+        <th (click)="sort('name')" scope="col">Name</th>
+        <th (click)="sort('city')" scope="col">City</th>
+        <th (click)="sort('orderTotal')" scope="col">Order Total</th>
     </tr>
   </thead>
   <tbody>
@@ -24,7 +24,7 @@
             {{ customerOrderTotal }}
         </td>
     </tr>
-    <tr *ngIf="!filteredCustomers && !filteredCustomers.length">
+    <tr *ngIf="!filteredCustomers || !filteredCustomers.length">
         <td colspan="4">No customers found</td>
     </tr>
   </tbody>
