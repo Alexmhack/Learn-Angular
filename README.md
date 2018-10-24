@@ -457,3 +457,13 @@ We have to use ```forChild``` with the new routes in the child modules.
 When using ```redirectTo``` in routes we use the ```'/customers'``` by putting a slash
 at the front of the path and when creating a path for the component we specify the
 path without any slashes ```{ path: 'customers', component: CustomersComponent }```
+
+## Orders
+So now we need a completely separate folder for **orders** component, module and 
+routing so for that we will use Angular CLI
+
+```
+ng generate component orders
+ng generate module orders/orders --flat --module=app
+ng generate module orders/orders-routing --flat --module=orders
+```

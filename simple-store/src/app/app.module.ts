@@ -9,10 +9,13 @@ import { CustomersModule } from './customers/customers.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
+import { OrdersComponent } from './orders/orders.component';
+import { OrdersModule } from './orders/orders.module';
 
 @NgModule({
   declarations: [
     AppComponent,
+    OrdersComponent,
     // CustomersComponent
   ],
   imports: [
@@ -21,7 +24,7 @@ import { AppRoutingModule } from './app-routing.module';
     SharedModule,
     CoreModule,
     MDBBootstrapModule.forRoot(),  // <- mdbootstrap
-    AppRoutingModule
+    AppRoutingModule, OrdersModule
   ],
   providers: [],
   bootstrap: [AppComponent]
