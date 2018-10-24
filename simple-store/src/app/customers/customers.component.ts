@@ -25,7 +25,9 @@ export class CustomersComponent implements OnInit {
   ngOnInit() {
   	this.title = "Customers";
 
-
+    // trigger http service to get customers
+    this.dataService.getCustomers()
+      .subscribe((customers: ICustomer[]) => this.people = customers);
 
   	// customers data
   	// this.people = [
