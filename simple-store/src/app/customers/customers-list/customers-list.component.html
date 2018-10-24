@@ -14,7 +14,8 @@
   <tbody>
     <tr mdbTableCol *ngFor="let cust of filteredCustomers">
       <th scope="row">{{ cust.id }}</th>
-      <td>{{ cust.name }}</td>
+      <!-- <td>{{ cust.name | titlecase }}</td> -->
+      <td>{{ cust.name | capitalize }}</td>
       <td>{{ cust.city }}</td>
       <td>{{ cust.orderTotal }}</td>
     </tr>
