@@ -323,3 +323,83 @@ function here we need it define it in components
 ```changeVisibility``` function simply changes the value of ```isVisible``` to the 
 opposite of its current value. So if it is **true** the button click event makes its 
 value **false**
+
+## Sorting Customers
+So for sorting customers using the filtered-customers input field we can create a sort
+function that for now doesn't do anything and also we want to make the headers of the 
+table clickable,
+
+**customers-list.component.ts**
+```
+...
+  // calculates the order total of filtered customers
+  calculateOrders() {
+    this.customersOrderTotal = 0;
+    this.filteredCustomers.forEach((cust: ICustomer) => {
+      this.customersOrderTotal += cust.orderTotal;
+    })
+  }
+
+  sort(prop: string) {
+    // a sorting service will handle customer sorting
+  }
+
+}
+```
+
+We will pass in the property name as the parameter so that we can perform the 
+operation on the particular property in the table.
+
+And then we can use this function in event binding for click event using
+
+**customers-list.component.html**
+```
+<table mdbTable>
+  <thead class="blue white-text">
+    <tr>
+        <th (click)="sort('name')" scope="col">Name</th>  <!-- now clickable -->
+        <th (click)="sort('city')" scope="col">City</th>
+        <th (click)="sort('orderTotal')" scope="col">Order Total</th>
+    </tr>
+  </thead>
+  ...
+```
+
+## Input Get & Set
+We have hardcoded the values of customers for now by just copy pasting the values of 
+the array in **customers-list** but that is not how we actually do it when we have a 
+parent component that contains all the data.
+
+We will be using Parent Child relationship using ```Input``` decorator
+
+```
+import { Component, OnInit, Input } from '@angular/core';
+
+...
+
+export class CustomersListComponent implements OnInit {
+  private _customers: ICustomer[] = [];
+
+  @Input() get customers(): ICustomer[] {
+    return this._customers;
+  }
+
+  set customers(value: ICustomer[]) {
+    if (value) {
+      this._customers = this.filteredCustomers = value;
+      this.calculateOrders();
+    }
+  }
+  ...
+```
+
+We use the ```@Input``` firstly with the ```get``` method that means it will get the 
+values of type ```ICustomers[]``` array, so we need to return values so we return the 
+private variable that will hold the total customers data.
+
+So when we want to display all the customers details we use ```get``` method and when
+filtering customers we use ```set``` method, ```@Input``` decorator can go with only 
+one method. In ```set``` method we take in the array of customers and if it exists 
+we set that array into both the total customers field => *_customers* and 
+*filteredCustomers* and also call the ```calculateOrders``` to calculate the orders of 
+the filtered customers.
