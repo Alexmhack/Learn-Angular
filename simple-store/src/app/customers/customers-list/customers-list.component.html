@@ -6,6 +6,7 @@
 <table mdbTable>
   <thead class="blue white-text">
     <tr>
+        <th scope="col">Id</th>
         <th (click)="sort('name')" scope="col">Name</th>
         <th (click)="sort('city')" scope="col">City</th>
         <th (click)="sort('orderTotal')" scope="col">Order Total</th>
@@ -14,15 +15,16 @@
   <tbody>
     <tr mdbTableCol *ngFor="let cust of filteredCustomers">
       <th scope="row">{{ cust.id }}</th>
-      <!-- <td>{{ cust.name | titlecase }}</td> -->
-      <td>{{ cust.name | capitalize }}</td>
+      <!-- <td>{{ cust.name | titlecase }}</td> // angular pipe -->
+      <td>{{ cust.name | capitalize }}</td> <!-- custom pipe -->
       <td>{{ cust.city }}</td>
-      <td>{{ cust.orderTotal }}</td>
+      <!-- 'code' will show 'USD' 'symbol' will show $ -->
+      <td>{{ cust.orderTotal | currency:currenyCode:'symbol' }}</td>
     </tr>
     <tr *ngIf="filteredCustomers && filteredCustomers.length">
-        <td colspan="2">&nbsp;</td>
+        <td colspan="3">&nbsp;</td>
         <td>
-            {{ customerOrderTotal }}
+            {{ customersOrderTotal | currency:currenyCode:'symbol' }}
         </td>
     </tr>
     <tr *ngIf="!filteredCustomers || !filteredCustomers.length">
