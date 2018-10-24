@@ -403,3 +403,53 @@ one method. In ```set``` method we take in the array of customers and if it exis
 we set that array into both the total customers field => *_customers* and 
 *filteredCustomers* and also call the ```calculateOrders``` to calculate the orders of 
 the filtered customers.
+
+## Routing
+We can use Angular CLI to generate the routing module by running the below command
+
+```
+ng generate module app-routing --flat --module=app
+```
+
+```--flat``` will keep the routing module file in the root folder or inside **src/app**
+and ```--module=app``` will add the routing module in imports array of ```app.module.ts``` or we can say register the routing module in root of application.
+
+We have defined to routes initially,
+
+```
+const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: '/customers' },
+  { path: '**', pathMatch: 'full', redirectTo: '/customers' }
+]
+```
+
+The first route will check if someone visits our website for example at ```example.com``` which means that the url after the domain ```.com``` is empty then he will be 
+redirected to ```example.com/customers``` and this will only happen if the url is 
+matched completely.
+
+The second route handles the urls that doesn't exist in our application so if anything 
+after the domain doesn't match then it will automatically redirect to ```/customers```
+
+Routing just needs ```<router-outlet></router-outlet>``` in ```app.components.html```
+file to show the templates for the particular routes.
+
+Now that we have our base routes defined we can create child routes for the particular 
+modules. We will generate routing module for customers module.
+
+To generate the ```customers-routing.module.ts``` file run the following command
+
+```
+ng generate module customers/customers-routing  --module=customers --flat
+
+CREATE src/app/customers/customers-routing.module.spec.ts (356 bytes)
+CREATE src/app/customers/customers-routing.module.ts (200 bytes)
+UPDATE src/app/customers/customers.module.ts (806 bytes)
+```
+
+What the above command does is generate the **customers-routing** module inside the 
+customers folder and also registers the module in the ```customers.module.ts```
+
+**Remeber** that we can use ```RouterModule.forRoot(routes)``` only once and that too 
+in the ```app.module.ts``` file so what about our new routing module for customers.
+
+We have to use ```forChild``` with the new routes in the child modules.
