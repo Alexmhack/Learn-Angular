@@ -4,34 +4,30 @@
 <br />
 
 <table mdbTable>
-  <thead class="blue white-text">
+  <thead class="black white-text">
     <tr>
-        <th scope="col">Id</th>
-        <th (click)="sort('name')" scope="col">Name</th>
-        <th (click)="sort('city')" scope="col">City</th>
-        <th (click)="sort('orderTotal')" scope="col">Order Total</th>
+      <th *ngFor="let head of headElements" scope="col">{{ head }} </th>
     </tr>
   </thead>
   <tbody>
     <tr mdbTableCol *ngFor="let cust of filteredCustomers">
       <th scope="row">{{ cust.id }}</th>
-      <!-- <td>{{ cust.name | titlecase }}</td> // angular pipe -->
-      <td>{{ cust.name | capitalize }}</td> <!-- custom pipe -->
+      <td>
+        <a [routerLink]="['/orders', cust.id]">
+          {{ cust.name }}
+        </a>
+      </td>
       <td>{{ cust.city }}</td>
-      <!-- 'code' will show 'USD' 'symbol' will show $ -->
-      <td>{{ cust.orderTotal | currency:currenyCode:'symbol' }}</td>
-    </tr>
-    <tr *ngIf="filteredCustomers && filteredCustomers.length">
-        <td colspan="3">&nbsp;</td>
-        <td>
-            {{ customersOrderTotal | currency:currenyCode:'symbol' }}
-        </td>
-    </tr>
-    <tr *ngIf="!filteredCustomers || !filteredCustomers.length">
-        <td colspan="4">No customers found</td>
+      <td>{{ cust.orderTotal }}</td>
+      <td colspan="2">&nbsp;</td>
+      <td  *ngIf="filteredCustomers && filteredCustomers.length">
+          {{ customerOrderTotal }}
+      </td>
+      <td *ngIf="!filteredCustomers && !filteredCustomers.length" colspan="4">No customers found</td>
     </tr>
   </tbody>
 </table>
+<br>
 Number of Customers: {{ filteredCustomers.length }}
 
 <!-- <table class="table table-hover">
